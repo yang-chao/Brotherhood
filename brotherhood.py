@@ -1,16 +1,15 @@
 #coding:utf-8
 from flask import Flask, request, render_template
-import os
-import time
-import datetime
-import sys
+import os, time, datetime, sys
+from util import fileUtil
+from debugapi import debugapi
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 app = Flask(__name__)
 
-@app.route('/archived')
+@app.route('/')
 def archived_android():
 	apkPath = 'static/apk'
 	filePaths = os.listdir(apkPath)
@@ -20,6 +19,7 @@ def archived_android():
 	createTime = ''
 	size = 0
 	build = ''
+	version = ''
 	for path in filePaths:
 		if not os.path.isdir(path):
 			basename = os.path.basename(path)
@@ -32,41 +32,29 @@ def archived_android():
 			elif 'Pre' in basename:
 				preName = 'apk/' + basename
 
-	# print('filePaht:' + filePaths[1])
-	createTime = get_file_createTime('static/apk/' + filePaths[1])
-	size = get_file_size('static/apk/' + filePaths[1])
+	if (launchName):
+		createTime = fileUtil.get_file_createTime('static/' + launchName)
+		size = fileUtil.get_file_size('static/' + launchName)
 
-	# babyfs-build24-Launch-debug.apk
+	# babyfs-v2.0.2-build24-Launch-debug.apk
 	nameArray = basename.split('-')
 	for s in nameArray:
 		if 'build' in s:
 			build = s
+		elif 'v' in s:
+			version = s
 	return render_template('archived.html', launchName=launchName, testName=testName, preName=preName,
-		create_time=createTime, size=size, build=build)
+		create_time=createTime, size=size, build=build, version=version)
 
-# 获取文件大小
-def get_file_size(path):
-	fsize = os.path.getsize(path)
-	fsize = fsize/float(1024*1024)
-	return round(fsize, 2)
+#debugapi
+@app.route('/debugapi')
+@app.route('/debugapi/new', methods=['GET', 'POST'])
+def new_api():
+	return debugapi.newApi(request)
 
-# 获取文件创建时间
-def get_file_createTime(path):
-	createTime = os.path.getctime(path)
-	currentTime = time.time()
-	diff = int(currentTime - createTime)
-	result = ''
-	if (diff / (24 * 3600) > 0):
-		day = diff / (24 * 3600)
-		result = str(day) + '天'
-	elif (diff / 3600 > 0):
-		hour = diff / 3600
-		result = str(hour) + '小时'
-	elif (diff / 60 > 0):
-		minute = diff / 60
-		result = str(minute) + '分钟'
-	return result + '前'
+@app.route('/debugapi/custom/<apiName>')
+def custom_api(apiName):
+	return debugapi.customApi(apiName)
 
 if __name__ == '__main__':
-	app.debug = True
-	app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0', port=80, debug=True)

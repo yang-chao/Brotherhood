@@ -9,13 +9,13 @@
 <body>
     <h1>Android</h1>
     <a class="name" href="{{ url_for('static', filename='') }}{{ launchName }}">正式地址</a>
-    <span class="desc">({{ create_time }} {{ build }} {{ size }}M)</span>
+    <span class="desc">({{ create_time }} {{ version }} {{ build }} {{ size }}M)</span>
     <br>
     <a class="name" href="{{ url_for('static', filename='') }}{{ testName }}">测试地址</a>
-    <span class="desc">({{ create_time }} {{ build }} {{ size }}M)</span>
+    <span class="desc">({{ create_time }} {{ version }} {{ build }} {{ size }}M)</span>
     <br>
     <a class="name" href="{{ url_for('static', filename='') }}{{ preName }}">预上线地址</a>
-    <span class="desc">({{ create_time }} {{ build }} {{ size }}M)</span>
+    <span class="desc">({{ create_time }} {{ version }} {{ build }} {{ size }}M)</span>
     <br>
 </body>
 </html>

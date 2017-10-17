@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新建API</title>
+    <style type="text/css">
+        .title {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .input_area {
+            width: 60%;
+            text-align: left;
+            margin-top: 30px;
+        }
+        .input_area .td_title {
+            text-align: right;
+            vertical-align: top;
+            color: #3c93b7;
+        }
+        .input_area .submit {
+            text-align: center;
+            line-height: 24px;
+        }
+        .submit_input {
+            font-size: 30px;
+        }
+        .url {
+            width: 40%;
+        }
+        .json {
+            width: 80%;
+            height: 500px;
+        }
+        .help {
+            text-align: right;
+            margin-right: 30px;
+        }
+        .help a {
+            text-decoration: none;
+            color: #3c93b7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title"><h2>自定义API</h2></div>
+<div class="help" hidden="true"><a href="http://debugapi.sinaapp.com/news/help">支持中心</a></div>
+<div>
+    <form action="" method="post">
+        <table class="input_area" align="center">
+            <tr>
+                <td class="td_title"><B>URL</B></td>
+                <td>
+                    http://[host]/news/custom/<input class="url" type="text" name="url">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>(自定义API保存7天)</td>
+            </tr>
+            <tr>
+                <td class="td_title"><B>JSON</B></td>
+                <td>
+                    <textarea class="json" name="json"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="submit" colspan="2">
+                    <input class="submit_input" type="submit" name="submit" value="提   交"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
