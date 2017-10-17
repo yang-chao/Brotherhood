@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>宝宝玩英语</title>
+    <link href="static/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body onLoad="readFiles">
+<body>
     <h1>Android</h1>
-    <a href="{{ url_for('static', filename='') }}{{ launchName }}">正式地址</a>
+    <a class="name" href="{{ url_for('static', filename='') }}{{ launchName }}">正式地址</a>
+    <span class="desc">({{ create_time }} {{ build }} {{ size }}M)</span>
     <br>
-    <a href="{{ url_for('static', filename='') }}{{ testName }}">测试地址</a>
+    <a class="name" href="{{ url_for('static', filename='') }}{{ testName }}">测试地址</a>
+    <span class="desc">({{ create_time }} {{ build }} {{ size }}M)</span>
     <br>
-    <a href="{{ url_for('static', filename='') }}{{ preName }}">预上线地址</a>
+    <a class="name" href="{{ url_for('static', filename='') }}{{ preName }}">预上线地址</a>
+    <span class="desc">({{ create_time }} {{ build }} {{ size }}M)</span>
     <br>
 </body>
 </html>
