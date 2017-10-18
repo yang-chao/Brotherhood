@@ -1,6 +1,6 @@
 #coding:utf-8
 import json
-from flask import request
+from flask import request, abort
 
 def newApi(request):
 	if request.method == 'POST':
@@ -26,7 +26,10 @@ def newApi(request):
 
 def customApi(apiName):
 	if apiName:
-		f = open("debugapi/json/" + apiName + ".json")
-		data = f.read()
-		f.close()
-	return data
+		try:
+			f = open("debugapi/json/" + apiName + ".json")
+			data = f.read()
+			return data
+		except IOError as e:
+			abort(404)
+	

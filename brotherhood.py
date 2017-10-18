@@ -56,5 +56,9 @@ def new_api():
 def custom_api(apiName):
 	return debugapi.customApi(apiName)
 
+# @app.errorhandler(404)
+# def page_not_found(error):
+#     return render_template('page_not_found.html'), 404
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
