@@ -17,7 +17,7 @@ def newApi(request):
 			jsonfile = open("debugapi/json/" + filepath + ".json", "w")
 			jsonfile.write(json.encode('utf-8'))
 			jsonfile.close()
-			return "Submit success!"
+			return customApi(filepath)
 
 	f = open("templates/newapi.html")
 	data = f.read()

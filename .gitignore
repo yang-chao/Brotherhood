@@ -102,3 +102,4 @@ ENV/
 
 *.DS_Store
 static/apk
+debugapi/json
